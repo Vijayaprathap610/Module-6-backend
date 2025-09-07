@@ -4,7 +4,7 @@ import {auth, permit} from "../middleWare/auth.js";
 
 const router = express.Router();
 // Passenger: create booking
-router.post('/booking', auth, permit('passenger'), async (req, res) => {
+router.post('/bookings', auth, permit('passenger'), async (req, res) => {
   try {
     const booking = await Booking.create({ ...req.body, user: req.user.id, status: 'Pending' });
     res.status(201).json(booking);

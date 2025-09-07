@@ -5,7 +5,7 @@ import {auth, permit} from "../middleWare/auth.js";
 const router = express.Router();
 
 // Admin: create flight
-router.post('/flight', auth, permit('admin'), async (req, res) => {
+router.post('/flights', auth, permit('admin'), async (req, res) => {
     try {
         const flight = await Flight.create(req.body);
         res.status(201).json(flight);
@@ -35,7 +35,7 @@ router.delete('/:id', auth, permit('admin'), async (req, res) => {
 });
 
 // Public/Passenger: list/filter flights
-router.get('/api/flights', async (req, res) => {
+router.get('/flights', async (req, res) => {
     try {
         const { from, to, date } = req.query;
         const q = {};
